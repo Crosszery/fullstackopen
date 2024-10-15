@@ -5,6 +5,14 @@ const Button = ({handleClick,text}) => {
 }
 
 const MostVotedAnecdote = ({anecdote, maxVotes}) => {
+	if (maxVotes == 0) {
+		return (
+			<div>
+				<h2>Anecdote with most votes</h2>
+				No one vote yet!
+			</div>
+		)
+	}
 	return (
 		<div>
 			<h2>Anecdote with most votes</h2>
@@ -33,7 +41,7 @@ const App = () => {
 		return Math.floor(Math.random() * (maxValue));
 	}
 
-	function getMostVotedIndex(anecdotes, votes) {
+	function getMostVotedIndex(votes) {
 		let index = 0;
 		let maxVotes = 0;
 		for (let i = 0; i < votes.length; i++) {
@@ -59,7 +67,7 @@ const App = () => {
 		setVotes(votesCopy);
 	}
 
-	let mostVotedIndex = getMostVotedIndex(anecdotes, votes);
+	let mostVotedIndex = getMostVotedIndex(votes);
 	return (
 		<div>
 			<h2>Anecdote of the day</h2>
